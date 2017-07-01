@@ -22,5 +22,29 @@ namespace CSNES
             cycleCount = 0;
 
         }
+
+        public byte ReadByte(ushort addr, AddressingMode addressingMode)
+        {
+            if (addressingMode == AddressingMode.Immediate)
+            {
+                return cart.getMapper().ReadByte(ppu.PC);
+            } else
+            {
+                Console.WriteLine("Unimplemented ReadByte Addressing Mode: {0}", addressingMode);
+                return 0;
+            }
+        }
+
+        public void WriteByte(ushort addr, byte value, AddressingMode addressingMode)
+        {
+            if (addressingMode == AddressingMode.Absolute)
+            {
+                memory.WriteByte(addr, value);
+            }
+            else
+            {
+                Console.WriteLine("Unimplemented WriteByte Addressing Mode: {0}", addressingMode);
+            }
+        }
     }
 }

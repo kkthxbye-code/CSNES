@@ -8,8 +8,12 @@ namespace CSNES.Mappers
 {
     public abstract class Mapper
     {
-        public abstract byte read(ushort addr);
+        public abstract byte ReadByte(ushort addr);
 
-        public abstract void write(ushort addr, byte val);
+        public abstract void WriteByte(ushort addr, byte val);
+
+        public abstract ushort ReadWord(ushort addr);
+
+        public abstract void WriteWord(ushort addr, ushort val);
     }
 }

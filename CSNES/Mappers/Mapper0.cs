@@ -15,14 +15,27 @@ namespace CSNES.Mappers
             this.cart = cart;
         }
 
-        public override byte read(ushort address)
+        public override byte ReadByte(ushort address)
         {
             return cart.PRGData[address - 0x8000];
         }
 
-        public override void write(ushort address, byte val)
+        public override void WriteByte(ushort address, byte val)
         {
             
+        }
+
+        public override ushort ReadWord(ushort address)
+        {
+            byte lower = cart.PRGData[address - 0x8000];
+            byte upper = cart.PRGData[(address - 0x8000) + 1];
+
+            return (ushort)(lower | upper << 8);
+        }
+
+        public override void WriteWord(ushort address, ushort val)
+        {
+
         }
     }
 }
